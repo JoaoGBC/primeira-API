@@ -6,7 +6,7 @@ import random
 app = Flask(__name__)
 app.config['JSON_SORT_KEYS'] = False
 
-@app.route('/get_carros', methods=['GET'])
+@app.route('/get_weather', methods=['GET'])
 #marca como rota, e define seu verbo http;
 def get_weather():
     return make_response(
@@ -16,24 +16,25 @@ def get_weather():
         )   
     )
 
-@app.route('/create_carro', methods=['POST'])
-def create_carro():
-    carro = request.json
-    Carros.append(carro)
+@app.route('/create_weather', methods=['POST'])
+def create_weather():
+    weather = request.json
+    Summaries.append(weather)
     return make_response(
         jsonify(
-                mensagem = 'Carro cadastrado com sucesso.',
-                carro = carro
+                mensagem = 'Summarie successfully created.',
+                summarie = weather
             )
     )
 
-@app.route('/remove_carro', methods=['DELETE'])
-def remove_carro():
-    carro = request.json
-    Carros.remove(carro[0])
+@app.route('/remove_weather', methods=['DELETE'])
+def remove_weather():
+    weather = request.json
+    Summaries.remove(weather)
     return make_response(
         jsonify(
-            Carros
+            mensagem = 'Summarie sucessfully deleted.',
+            Summaries = Summaries
         )
     )
 
